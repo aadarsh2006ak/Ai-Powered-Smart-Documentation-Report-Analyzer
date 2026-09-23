@@ -10,6 +10,7 @@
 [![Redis](https://img.shields.io/badge/Redis_BullMQ-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
 [![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
 [![Groq LPU](https://img.shields.io/badge/Groq_Cloud_LPU-F55036?style=for-the-badge&logo=fastapi&logoColor=white)](https://groq.com/)
+[![Docker](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 [![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://render.com/)
 
 **An Enterprise-Grade, Asynchronous Document Intelligence & RAG Platform**
@@ -31,6 +32,7 @@
 - [Performance & Token Optimization](#-performance--token-optimization)
 - [Tech Stack Breakdown](#-tech-stack-breakdown)
 - [REST API Reference](#-rest-api-reference)
+- [🐳 Docker Compose Multi-Container Setup](#-docker-compose-multi-container-setup)
 - [Local Setup & Installation](#-local-setup--installation)
 - [Deployment on Render](#-deployment-on-render)
 - [Environment Variables](#-environment-variables)
@@ -250,6 +252,52 @@ sequenceDiagram
 | `POST` | `/api/reports/compare` | Multi-document side-by-side contract comparison | Private |
 | `GET` | `/api/reports/:id/download-pdf` | Download formatted PDF analysis report | Private |
 | `GET` | `/api/reports/analytics/summary` | Aggregate dashboard metrics & cache savings | Private |
+
+---
+
+## 🐳 Docker Compose Multi-Container Setup
+
+The platform includes a production-ready, fully orchestrated [`docker-compose.yml`](./docker-compose.yml) that starts all 4 required microservices in isolated bridge networks with zero manual database or Redis configuration:
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                   DOCKER MULTI-CONTAINER ARCHITECTURE                  │
+├───────────────────┬───────────────────┬────────────────┬───────────────┤
+│ 🌐 React Client   │ ⚡ Express API    │ 🗄️ MongoDB     │ 🔴 Redis      │
+│ (Nginx :5173->:80)│ (:5000)           │ (:27017)       │ (:6380->:6379)│
+│ Reverse Proxies   │ BullMQ Ingestion  │ Document Store │ Token Cache & │
+│ /api/ to backend  │ & Dual AI Engines │ & Analytics    │ Job Queue     │
+└───────────────────┴───────────────────┴────────────────┴───────────────┘
+```
+
+### 1. Build and Run All Services
+```bash
+# Build & start all containers in foreground (to view live logs)
+docker-compose up --build
+
+# Or run in detached / background mode
+docker-compose up -d --build
+```
+
+### 2. Access the Application
+- **Frontend App**: [http://localhost:5173](http://localhost:5173) *(Includes automatic Nginx reverse proxy for `/api` requests)*
+- **Backend API**: [http://localhost:5000](http://localhost:5000)
+- **API Health Check**: [http://localhost:5000/api/health](http://localhost:5000/api/health)
+- **MongoDB Instance**: `localhost:27017`
+- **Redis Instance**: `localhost:6380`
+
+### 3. Manage Docker Services
+```bash
+# Check container statuses
+docker-compose ps
+
+# Stream real-time logs for backend or client
+docker-compose logs -f api
+docker-compose logs -f client
+
+# Gracefully stop all containers & networks
+docker-compose down
+```
 
 ---
 
