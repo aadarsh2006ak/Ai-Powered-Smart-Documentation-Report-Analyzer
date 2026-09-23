@@ -1,0 +1,56 @@
+name: SmartDoc AI CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test_and_build:
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:6.0
+        ports:
+          - 27017:27017
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Root Dependencies
+        run: npm ci || npm install
+
+      - name: Install & Test Server
+        working-directory: ./server
+        env:
+          MONGO_URI: mongodb://127.0.0.1:27017/doc_analyzer
+          REDIS_HOST: 127.0.0.1
+          REDIS_PORT: 6379
+          JWT_SECRET: ci_test_secret_key_12345
+          JWT_REFRESH_SECRET: ci_test_refresh_secret_key_12345
+        run: |
+          npm ci || npm install
+          node src/tests/testAuthAndUpload.js
+          node src/tests/testExtraction.js
+          node src/tests/testAIAnalyzer.js
+          node src/tests/testPdfAndEmail.js
+          node src/tests/testIntegrationSuite.js
+
+      - name: Install & Build Client
+        working-directory: ./client
+        run: |
+          npm ci || npm install
+          npm run build

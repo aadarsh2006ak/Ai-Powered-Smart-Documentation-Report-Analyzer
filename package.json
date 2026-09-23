@@ -1,0 +1,30 @@
+{
+  "name": "smart-document-report-analyzer",
+  "version": "1.0.0",
+  "description": "AI-Powered Smart Document & Report Analyzer - Full Stack MERN + Gemini AI + BullMQ + Cloudinary",
+  "main": "server/src/index.js",
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "start": "npm run start --prefix server",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "build": "npm run build --prefix client",
+    "lint": "npm run lint --prefix client"
+  },
+  "keywords": [
+    "mern",
+    "gemini-ai",
+    "document-analyzer",
+    "ocr",
+    "bullmq",
+    "redis",
+    "pdf-parse",
+    "full-stack"
+  ],
+  "author": "Smart Doc Analyzer Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

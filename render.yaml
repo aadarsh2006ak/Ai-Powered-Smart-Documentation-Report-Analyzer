@@ -1,0 +1,60 @@
+services:
+  # ==========================================================
+  # 1. Backend Web Service (Node.js + Express + BullMQ + AI)
+  # ==========================================================
+  - type: web
+    name: smartdoc-analyzer-api
+    env: node
+    plan: free
+    region: oregon
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: CLIENT_URL
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: REDIS_HOST
+        value: 127.0.0.1
+      - key: REDIS_PORT
+        value: 6379
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+
+  # ==========================================================
+  # 2. Frontend Static Site (React 18 + Vite + TailwindCSS)
+  # ==========================================================
+  - type: web
+    name: smartdoc-analyzer-ui
+    env: static
+    plan: free
+    region: oregon
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://smartdoc-analyzer-api.onrender.com/api
