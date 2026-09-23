@@ -16,7 +16,12 @@
 **An Enterprise-Grade, Asynchronous Document Intelligence & RAG Platform**
 *Multi-format document ingestion (PDF, DOCX, Scanned Images, XLSX, TXT), specialized domain reasoning engines, interactive RAG citation chat, multi-contract comparison matrix, and SHA-256 token caching.*
 
-[Live Demo (GitHub Repo)](https://github.com/aadarsh2006ak/Ai-Powered-Smart-Documentation-Report-Analyzer) • [Report Bug](https://github.com/aadarsh2006ak/Ai-Powered-Smart-Documentation-Report-Analyzer/issues) • [Request Feature](https://github.com/aadarsh2006ak/Ai-Powered-Smart-Documentation-Report-Analyzer/issues)
+<br/>
+
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-smartdoc--analyzer--ui.onrender.com-00C7B7?style=for-the-badge&logo=render&logoColor=white)](https://smartdoc-analyzer-ui.onrender.com)
+[![API Status](https://img.shields.io/badge/📡_API_Health-Online-4EA94B?style=for-the-badge&logo=statuspage&logoColor=white)](https://smartdoc-analyzer-api.onrender.com/api/health)
+
+[🌐 Live Web App](https://smartdoc-analyzer-ui.onrender.com) • [📡 Live Backend API](https://smartdoc-analyzer-api.onrender.com/api/health) • [🐙 GitHub Repo](https://github.com/aadarsh2006ak/Ai-Powered-Smart-Documentation-Report-Analyzer) • [🐞 Report Bug](https://github.com/aadarsh2006ak/Ai-Powered-Smart-Documentation-Report-Analyzer/issues)
 
 </div>
 
@@ -358,6 +363,13 @@ Open your browser at `http://localhost:5173`. Click **"1-Click Instant Demo Logi
 ## ☁️ Deployment on Render
 
 This repository includes a pre-configured [`render.yaml`](./render.yaml) blueprint.
+
+### 🌐 Live Production Deployments:
+| Service | Type | Live URL |
+| :--- | :--- | :--- |
+| **Frontend Application** | Static Site (React + Vite SPA) | [https://smartdoc-analyzer-ui.onrender.com](https://smartdoc-analyzer-ui.onrender.com) |
+| **Backend API Gateway** | Web Service (Node.js/Express) | [https://smartdoc-analyzer-api.onrender.com](https://smartdoc-analyzer-api.onrender.com) |
+| **API Health Check** | REST Health Probe | [https://smartdoc-analyzer-api.onrender.com/api/health](https://smartdoc-analyzer-api.onrender.com/api/health) |
 
 ### Automatic 1-Click Blueprint Deployment:
 1. Push your repository to GitHub.
