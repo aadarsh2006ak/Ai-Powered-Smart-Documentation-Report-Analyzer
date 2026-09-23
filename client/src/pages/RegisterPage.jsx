@@ -180,10 +180,10 @@ export default function RegisterPage() {
 
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/in/aadarsh-kumar-"
+              href="https://www.linkedin.com/in/aadarshkumar2006/"
               target="_blank"
               rel="noreferrer"
-              title="LinkedIn Profile"
+              title="LinkedIn Profile (@aadarshkumar2006)"
               className="p-2 rounded-xl bg-slate-900/80 hover:bg-[#0A66C2]/20 text-slate-400 hover:text-[#0A66C2] border border-white/10 hover:border-[#0A66C2]/40 transition-all duration-200 transform hover:scale-110 shadow-sm"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -193,10 +193,10 @@ export default function RegisterPage() {
 
             {/* Instagram */}
             <a
-              href="https://www.instagram.com/aadarsh_2006/"
+              href="https://www.instagram.com/aadarsh_tiwari_ak?stkn=MWE1NmthcDB5OHRjMA%3D%3D"
               target="_blank"
               rel="noreferrer"
-              title="Instagram Profile"
+              title="Instagram Profile (@aadarsh_tiwari_ak)"
               className="p-2 rounded-xl bg-slate-900/80 hover:bg-pink-500/20 text-slate-400 hover:text-pink-400 border border-white/10 hover:border-pink-500/40 transition-all duration-200 transform hover:scale-110 shadow-sm"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">

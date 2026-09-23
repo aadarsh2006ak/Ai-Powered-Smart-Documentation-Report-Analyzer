@@ -352,7 +352,14 @@ This repository includes a pre-configured [`render.yaml`](./render.yaml) bluepri
 
 <div align="center">
 
-**Built with precision by [Aadarsh Kumar](https://github.com/aadarsh2006ak)**
-*Feedback, stars, and pull requests are warmly welcomed!*
+### 👨‍💻 Connect with the Author
+
+**Aadarsh Kumar**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aadarsh2006ak)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aadarshkumar2006/)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/aadarsh_tiwari_ak?stkn=MWE1NmthcDB5OHRjMA%3D%3D)
+
+*Feedback, stars ⭐, and pull requests are warmly welcomed!*
 
 </div>
