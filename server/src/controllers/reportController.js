@@ -383,6 +383,7 @@ const chatWithDocument = async (req, res, next) => {
       data: answerResult,
     });
   } catch (error) {
+    logger.error('Document chat Q&A failed:', error.message);
     next(error);
   }
 };
@@ -394,7 +395,7 @@ const chatWithDocument = async (req, res, next) => {
  */
 const seedSampleReports = async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user._id;  
 
     // Sample documents for all 6 categories
     const sampleDocs = [
@@ -508,26 +509,16 @@ const seedSampleReports = async (req, res, next) => {
               grossMargin: '74.5% ($13.7M Gross Profit)',
               ebitda: '$4,500,000 (24.5% EBITDA Margin)',
               cashRunway: '24 Months ($6.5M Liquid Reserves)',
-              runwayMonths: '24 Months ($6.5M Liquid Reserves)',
               operatingExpenses: '$9,200,000 Total OpEx'
             },
             anomalies: [
               {
-                title: 'Q3 Cloud Infrastructure & Server Surge',
                 metricName: 'Q3 Server & Cloud Hosting',
                 variance: '+34% vs Q2 Budget',
                 anomalyType: 'OpEx Surge',
-                severity: 'Warning',
                 significance: 'Medium',
-                impactEstimate: '+$45,000/month',
-                description: 'Spike driven by massive GPU batch inference workloads during European localization rollout.',
                 explanation: 'Spike driven by massive GPU batch inference workloads during European localization rollout.'
               }
-            ],
-            cfoRecommendations: [
-              'Transition on-demand GPU clusters to 1-year reserved instances to trim cloud burn by $45,000/mo.',
-              'Enforce upfront annual billing for contracts above $50k to optimize working capital.',
-              'Maintain minimum 18-month cash buffer prior to closing Series C valuation.'
             ],
             cfoActionPlan: {
               nearTermLiquidityActions: [
