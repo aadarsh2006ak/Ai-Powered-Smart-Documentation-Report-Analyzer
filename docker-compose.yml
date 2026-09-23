@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   # 1. MongoDB Database
   mongodb:
-    image: mongo:6.0-alpine
+    image: mongo:6.0
     container_name: smartdoc_mongodb
     restart: always
     ports:
