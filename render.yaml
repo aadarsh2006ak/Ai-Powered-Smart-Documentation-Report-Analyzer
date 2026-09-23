@@ -46,8 +46,6 @@ services:
   - type: web
     name: smartdoc-analyzer-ui
     env: static
-    plan: free
-    region: oregon
     rootDir: client
     buildCommand: npm install && npm run build
     staticPublishPath: dist
