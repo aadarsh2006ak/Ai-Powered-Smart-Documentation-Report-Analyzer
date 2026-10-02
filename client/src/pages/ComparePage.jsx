@@ -255,14 +255,59 @@ export default function ComparePage() {
             </p>
           </div>
 
-          {/* Clause Comparison Matrix Table */}
-          <div className="glass-card rounded-2xl p-6 sm:p-8 space-y-4">
+          {/* Clause Comparison Matrix */}
+          <div className="glass-card rounded-2xl p-4 sm:p-7 space-y-4">
             <h3 className="text-sm font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
-              <Scale className="w-4 h-4 text-cyan-400" />
+              <Scale className="w-4 h-4 text-cyan-400 flex-shrink-0" />
               <span>Structured Clause Comparison Matrix</span>
             </h3>
 
-            <div className="overflow-x-auto">
+            {/* 1. Mobile Clause Cards (< md) */}
+            <div className="md:hidden space-y-3">
+              {(comparisonData.comparison?.clauseComparisonMatrix || []).map((row, idx) => (
+                <div
+                  key={idx}
+                  className="p-4 rounded-xl bg-slate-900/80 border border-white/10 space-y-3"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-bold text-sm text-white">{row.clauseType}</span>
+                    <span
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${getSeverityBadge(
+                        row.differenceSeverity
+                      )}`}
+                    >
+                      {row.differenceSeverity} Severity
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <div className="p-2.5 rounded-lg bg-slate-950/70 border border-cyan-500/20 space-y-1">
+                      <span className="text-[10px] uppercase font-bold text-cyan-400 block font-mono">
+                        Document A Terms
+                      </span>
+                      <p className="text-slate-200 leading-relaxed">{row.docAValue}</p>
+                    </div>
+
+                    <div className="p-2.5 rounded-lg bg-slate-950/70 border border-purple-500/20 space-y-1">
+                      <span className="text-[10px] uppercase font-bold text-purple-400 block font-mono">
+                        Document B Terms
+                      </span>
+                      <p className="text-slate-200 leading-relaxed">{row.docBValue}</p>
+                    </div>
+                  </div>
+
+                  {row.favorableTo && (
+                    <div className="text-[11px] font-mono text-slate-300 pt-1 flex items-center justify-between border-t border-white/5">
+                      <span className="text-slate-400">Favorable To:</span>
+                      <span className="font-bold text-cyan-300">{row.favorableTo}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* 2. Desktop Matrix Table (>= md) */}
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
                   <tr className="border-b border-white/10 text-slate-400 uppercase text-[11px] font-bold">
@@ -305,17 +350,17 @@ export default function ComparePage() {
           </div>
 
           {/* Strategic Takeaways & Negotiation Recommendations */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {/* Key Takeaways */}
-            <div className="glass-card rounded-2xl p-6 space-y-3">
+            <div className="glass-card rounded-2xl p-5 sm:p-6 space-y-3">
               <h3 className="text-sm font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-400" />
+                <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
                 <span>Critical Discrepancies & Takeaways</span>
               </h3>
               <ul className="space-y-2.5">
                 {(comparisonData.comparison?.keyTakeaways || []).map((item, i) => (
                   <li key={i} className="text-xs sm:text-sm text-slate-300 flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0 shadow-[0_0_6px_rgba(251,191,36,0.8)]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(251,191,36,0.8)]" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -323,15 +368,15 @@ export default function ComparePage() {
             </div>
 
             {/* Negotiation Recommendations */}
-            <div className="glass-card rounded-2xl p-6 space-y-3">
+            <div className="glass-card rounded-2xl p-5 sm:p-6 space-y-3">
               <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                 <span>Legal & Negotiation Recommendations</span>
               </h3>
               <ul className="space-y-2.5">
                 {(comparisonData.comparison?.negotiationRecommendations || []).map((rec, i) => (
                   <li key={i} className="text-xs sm:text-sm text-slate-300 flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
                     <span>{rec}</span>
                   </li>
                 ))}

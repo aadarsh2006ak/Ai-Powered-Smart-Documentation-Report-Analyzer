@@ -165,9 +165,18 @@ export default function AiEngineVisualizer() {
       animationFrameId = requestAnimationFrame(render);
     }
 
+    function handleResize() {
+      if (!canvas || !canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.clientWidth || 460;
+      height = canvas.height = 340;
+      initTraces();
+    }
+
+    window.addEventListener('resize', handleResize);
     render();
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

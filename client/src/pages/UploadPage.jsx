@@ -17,17 +17,17 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen py-6 sm:py-10 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6 sm:space-y-8">
       {/* Page Header */}
       <div className="text-center space-y-2 max-w-2xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold backdrop-blur-md mb-1">
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] sm:text-xs font-semibold backdrop-blur-md mb-1">
           <Cpu className="w-3.5 h-3.5 text-cyan-400" />
           <span>Multimodal Document Ingestion Engine</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+        <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight font-display">
           Document Intelligence <span className="text-gradient-ai">Upload Studio</span>
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400">
+        <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
           Upload any PDF or image document to extract text, calculate risk indicators, and generate structured summaries with Gemini & LLaMA AI.
         </p>
       </div>

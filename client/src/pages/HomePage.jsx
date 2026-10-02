@@ -122,35 +122,35 @@ export default function HomePage() {
   const currentDoc = demoScenarios[activeTab];
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-24 relative z-10">
+    <div className="min-h-screen py-6 sm:py-10 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-14 sm:space-y-20 relative z-10">
       {/* 1. HERO SECTION (2-Column AI Engineered Layout) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-6 lg:pt-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pt-3 sm:pt-6 lg:pt-10">
         {/* Left Column: Heading, Subtitle, & CTAs */}
-        <div className="lg:col-span-7 space-y-6 text-left">
+        <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left">
           {/* Status Chip */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121A2E]/80 border border-[#262F4C] text-[#EDEFF7] text-xs font-semibold backdrop-blur-xl shadow-lg">
-            <span className="w-2 h-2 rounded-full bg-[#47E0A6] shadow-[0_0_8px_#47E0A6] animate-pulse" />
-            <span className="font-mono text-[#47E0A6] text-[11px] font-bold tracking-wider">LIVE V2.0 ENGINE</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#121A2E]/80 border border-[#262F4C] text-[#EDEFF7] text-xs font-semibold backdrop-blur-xl shadow-lg max-w-full">
+            <span className="w-2 h-2 rounded-full bg-[#47E0A6] shadow-[0_0_8px_#47E0A6] animate-pulse flex-shrink-0" />
+            <span className="font-mono text-[#47E0A6] text-[10px] sm:text-[11px] font-bold tracking-wider">LIVE V2.0 ENGINE</span>
             <span className="text-[#8D96B3]">|</span>
-            <span className="text-slate-300 text-[11px]">Gemini 2.0 + Groq LLaMA Dual-Core</span>
+            <span className="text-slate-300 text-[10px] sm:text-[11px] truncate">Gemini 2.0 + Groq LLaMA Dual-Core</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white font-display">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white font-display">
             Transform Raw Documents into{' '}
             <span className="text-gradient-ai">Autonomous Intelligence</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base lg:text-lg text-[#8D96B3] max-w-2xl leading-relaxed font-normal">
+          <p className="text-xs sm:text-base lg:text-lg text-[#8D96B3] max-w-2xl leading-relaxed font-normal">
             Enterprise document analysis engine with asynchronous BullMQ Redis queues, dual-engine LLM reasoning, Zod schema validation, SHA-256 token deduplication, and vector-grade PDF synthesis.
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
             <Link
               to="/upload"
-              className="btn-ignition px-7 py-3.5 rounded-2xl flex items-center justify-center gap-2.5 shadow-xl text-sm font-bold font-display group"
+              className="btn-ignition px-6 sm:px-7 py-3.5 rounded-2xl flex items-center justify-center gap-2.5 shadow-xl text-xs sm:text-sm font-bold font-display group"
             >
               <Sparkles className="w-4 h-4 text-[#0A0E1A] group-hover:rotate-12 transition-transform" />
               <span>Launch Analysis Studio</span>
@@ -158,27 +158,35 @@ export default function HomePage() {
             </Link>
 
             <Link
+              to="/resume"
+              className="px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm text-cyan-300 hover:text-white glass-card hover:bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center gap-2 transition-all duration-200"
+            >
+              <FileText className="w-4 h-4 text-cyan-400" />
+              <span>AI Resume Mentor</span>
+            </Link>
+
+            <Link
               to="/compare"
-              className="px-6 py-3.5 rounded-2xl font-bold text-sm text-slate-200 hover:text-white glass-card hover:bg-white/10 border border-[#262F4C] flex items-center justify-center gap-2 transition-all duration-200"
+              className="px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm text-slate-200 hover:text-white glass-card hover:bg-white/10 border border-[#262F4C] flex items-center justify-center gap-2 transition-all duration-200"
             >
               <Scale className="w-4 h-4 text-purple-400" />
-              <span>Compare 2 Contracts</span>
+              <span>Compare Contracts</span>
             </Link>
           </div>
 
           {/* Micro Telemetry Bar */}
-          <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-[#8D96B3] font-mono border-t border-[#262F4C]/60">
+          <div className="pt-3 flex flex-wrap items-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-[#8D96B3] font-mono border-t border-[#262F4C]/60">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#47E0A6]" />
               <span><strong className="text-white">0.6s</strong> Avg Ingest</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FFB020]" />
-              <span><strong className="text-white">99.4%</strong> Extraction Precision</span>
+              <span><strong className="text-white">99.4%</strong> Precision</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-              <span><strong className="text-white">100%</strong> Cache Deduplication</span>
+              <span><strong className="text-white">100%</strong> Deduplication</span>
             </div>
           </div>
         </div>
@@ -203,9 +211,9 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2 sm:pt-4">
           {/* Stage 01 */}
-          <div className="glass-card rounded-2xl p-5 border border-[#262F4C] space-y-3 relative overflow-hidden group hover:border-cyan-500/50">
+          <div className="glass-card rounded-2xl p-4 sm:p-5 border border-[#262F4C] space-y-3 relative overflow-hidden group hover:border-cyan-500/50">
             <div className="flex items-center justify-between">
               <span className="text-xs font-black font-mono text-cyan-400 tracking-wider">STAGE 01</span>
               <span className="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
@@ -216,14 +224,14 @@ export default function HomePage() {
             <p className="text-xs text-[#8D96B3] leading-relaxed">
               Cloudinary multi-part stream storage, SHA-256 cryptographic hashing, and automated duplicate cache resolution.
             </p>
-            <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-cyan-400">
+            <div className="pt-1 flex items-center gap-1.5 text-[11px] font-mono text-cyan-400">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Zero LLM Waste</span>
             </div>
           </div>
 
           {/* Stage 02 */}
-          <div className="glass-card rounded-2xl p-5 border border-[#262F4C] space-y-3 relative overflow-hidden group hover:border-amber-500/50">
+          <div className="glass-card rounded-2xl p-4 sm:p-5 border border-[#262F4C] space-y-3 relative overflow-hidden group hover:border-amber-500/50">
             <div className="flex items-center justify-between">
               <span className="text-xs font-black font-mono text-amber-400 tracking-wider">STAGE 02</span>
               <span className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
@@ -234,14 +242,14 @@ export default function HomePage() {
             <p className="text-xs text-[#8D96B3] leading-relaxed">
               BullMQ + Upstash Redis workers orchestrate OCR extraction and concurrency with instant status polling endpoints.
             </p>
-            <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-amber-400">
+            <div className="pt-1 flex items-center gap-1.5 text-[11px] font-mono text-amber-400">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Non-Blocking I/O</span>
             </div>
           </div>
 
           {/* Stage 03 */}
-          <div className="glass-card rounded-2xl p-5 border border-[#262F4C] space-y-3 relative overflow-hidden group hover:border-[#47E0A6]/50">
+          <div className="glass-card rounded-2xl p-4 sm:p-5 border border-[#262F4C] space-y-3 relative overflow-hidden group hover:border-[#47E0A6]/50">
             <div className="flex items-center justify-between">
               <span className="text-xs font-black font-mono text-[#47E0A6] tracking-wider">STAGE 03</span>
               <span className="p-1.5 rounded-lg bg-[#47E0A6]/10 text-[#47E0A6] border-[#47E0A6]/20">
@@ -252,14 +260,14 @@ export default function HomePage() {
             <p className="text-xs text-[#8D96B3] leading-relaxed">
               Gemini 2.0 Flash and Groq LLaMA 3.3 70B execute strict Zod JSON schemas for risk scores, clauses, and actions.
             </p>
-            <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-[#47E0A6]">
+            <div className="pt-1 flex items-center gap-1.5 text-[11px] font-mono text-[#47E0A6]">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Strict Schema Mode</span>
             </div>
           </div>
 
           {/* Stage 04 */}
-          <div className="glass-card rounded-2xl p-5 border border-[#262F4C] space-y-3 relative overflow-hidden group hover:border-purple-500/50">
+          <div className="glass-card rounded-2xl p-4 sm:p-5 border border-[#262F4C] space-y-3 relative overflow-hidden group hover:border-purple-500/50">
             <div className="flex items-center justify-between">
               <span className="text-xs font-black font-mono text-purple-400 tracking-wider">STAGE 04</span>
               <span className="p-1.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
@@ -270,7 +278,7 @@ export default function HomePage() {
             <p className="text-xs text-[#8D96B3] leading-relaxed">
               Cosine similarity chunk search enables instant interactive Q&A citations and vector-rendered PDF reports.
             </p>
-            <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-purple-400">
+            <div className="pt-1 flex items-center gap-1.5 text-[11px] font-mono text-purple-400">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Direct Passage Citations</span>
             </div>
@@ -294,7 +302,7 @@ export default function HomePage() {
           </div>
 
           {/* Domain Category Selector Tabs */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-1 touch-pan-x">
             {[
               { id: 'legal', label: 'Legal Contract', icon: '⚖️' },
               { id: 'financial', label: 'Financial 10-K', icon: '📊' },
@@ -304,7 +312,7 @@ export default function HomePage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap flex-shrink-0 ${
                   activeTab === tab.id
                     ? 'btn-ignition'
                     : 'glass-card text-[#8D96B3] hover:text-white border-[#262F4C]'
@@ -319,21 +327,21 @@ export default function HomePage() {
 
         {/* Live Document Preview Card */}
         <div className="relative">
-          <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-[#262F4C] space-y-6 shadow-2xl bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95">
+          <div className="glass-panel rounded-3xl p-5 sm:p-8 border border-[#262F4C] space-y-6 shadow-2xl bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95">
             {/* Document Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#262F4C] pb-5">
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center shadow-lg shadow-amber-500/10">
-                  <FileText className="w-6 h-6" />
+              <div className="flex items-start sm:items-center gap-3.5">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/10">
+                  <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <div>
-                  <h3 className="text-base font-bold text-white font-display flex flex-wrap items-center gap-2">
-                    <span>{currentDoc.fileName}</span>
+                <div className="min-w-0">
+                  <h3 className="text-sm sm:text-base font-bold text-white font-display flex flex-wrap items-center gap-2">
+                    <span className="truncate max-w-[220px] sm:max-w-md">{currentDoc.fileName}</span>
                     <span className={`text-[10px] px-2.5 py-0.5 rounded-full border font-mono font-bold ${currentDoc.badgeBg}`}>
                       {currentDoc.category}
                     </span>
                   </h3>
-                  <div className="flex items-center gap-3 text-xs text-[#8D96B3] font-mono mt-1">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-[#8D96B3] font-mono mt-1">
                     <span>Latency: <strong className="text-white">{currentDoc.metrics.latency}</strong></span>
                     <span>•</span>
                     <span>Tokens: <strong className="text-white">{currentDoc.metrics.tokens}</strong></span>
@@ -343,10 +351,10 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 bg-[#0A0E1A] p-3 rounded-2xl border border-[#262F4C]">
-                <div className="text-right">
+              <div className="flex items-center justify-between sm:justify-end gap-4 bg-[#0A0E1A] p-3 rounded-2xl border border-[#262F4C]">
+                <div className="text-left sm:text-right">
                   <span className="text-[10px] uppercase font-mono font-bold text-[#8D96B3] block">Calculated Risk</span>
-                  <p className={`text-lg font-black font-display ${currentDoc.riskColor}`}>
+                  <p className={`text-base sm:text-lg font-black font-display ${currentDoc.riskColor}`}>
                     {currentDoc.riskScore}/100 <span className="text-xs font-normal">({currentDoc.riskLevel})</span>
                   </p>
                 </div>

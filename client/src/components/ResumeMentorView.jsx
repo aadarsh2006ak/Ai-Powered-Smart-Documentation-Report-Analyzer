@@ -121,15 +121,15 @@ export default function ResumeMentorView({ report }) {
   };
 
   return (
-    <div className="space-y-8 animate-fadeIn">
+    <div className="space-y-6 sm:space-y-8 animate-fadeIn">
       {/* 1. HERO ATS SCORE & PROFILE OVERVIEW */}
-      <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-[#262F4C] bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95 relative overflow-hidden shadow-2xl">
+      <div className="glass-panel rounded-3xl p-4 sm:p-8 border border-[#262F4C] bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95 relative overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 relative z-10">
           {/* Left: Overall ATS Score Dial */}
-          <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-            <div className="relative w-32 h-32 flex items-center justify-center flex-shrink-0">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left w-full lg:w-auto">
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 flex items-center justify-center flex-shrink-0">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                 <circle
                   cx="50"
@@ -155,28 +155,28 @@ export default function ResumeMentorView({ report }) {
                 />
               </svg>
               <div className="absolute flex flex-col items-center justify-center">
-                <span className={`text-3xl font-black font-display ${getScoreColor(atsScore)}`}>
+                <span className={`text-2xl sm:text-3xl font-black font-display ${getScoreColor(atsScore)}`}>
                   {atsScore}
                 </span>
-                <span className="text-[10px] uppercase font-mono font-bold text-[#8D96B3]">
+                <span className="text-[9px] sm:text-[10px] uppercase font-mono font-bold text-[#8D96B3]">
                   ATS Score
                 </span>
               </div>
             </div>
 
-            <div className="space-y-2">
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-                <span className={`px-3 py-0.5 rounded-full text-xs font-mono font-bold border ${getScoreBadge(atsScore)}`}>
+            <div className="space-y-2 flex-1">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2">
+                <span className={`px-2.5 sm:px-3 py-0.5 rounded-full text-[11px] sm:text-xs font-mono font-bold border ${getScoreBadge(atsScore)}`}>
                   {atsScore >= 85 ? 'Top 10% ATS Match' : atsScore >= 70 ? 'Competitive Match' : 'Optimization Required'}
                 </span>
-                <span className="px-3 py-0.5 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
-                  {profile.detectedDomain || 'Full-Stack Software Engineering'}
+                <span className="px-2.5 sm:px-3 py-0.5 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+                  {profile.detectedDomain || 'Software Engineering'}
                 </span>
-                <span className="px-3 py-0.5 rounded-full text-xs font-mono font-bold bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
-                  {profile.seniorityLevel || 'Mid-Senior'}
+                <span className="px-2.5 sm:px-3 py-0.5 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
+                  {profile.seniorityLevel || 'Senior'}
                 </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-white font-display">
+              <h2 className="text-lg sm:text-2xl font-black text-white font-display">
                 Resume Intelligence & Career Acceleration Report
               </h2>
               <p className="text-xs sm:text-sm text-[#8D96B3] max-w-xl">
@@ -187,49 +187,49 @@ export default function ResumeMentorView({ report }) {
         </div>
 
         {/* 4 ATS Pillars Breakdown Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 mt-6 border-t border-[#262F4C]">
-          <div className="p-3.5 rounded-2xl bg-[#0A0E1A]/80 border border-[#262F4C] space-y-1">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 pt-5 sm:pt-6 mt-5 sm:mt-6 border-t border-[#262F4C]">
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#0A0E1A]/80 border border-[#262F4C] space-y-1">
             <span className="text-[10px] uppercase font-mono font-bold text-[#8D96B3] block">
-              Layout & Parseability
+              Formatting & ATS
             </span>
             <div className="flex items-center justify-between">
-              <span className="text-lg font-black font-display text-white">
+              <span className="text-base sm:text-lg font-black font-display text-white">
                 {breakdown.formattingScore || 90}%
               </span>
               <CheckCircle2 className="w-4 h-4 text-[#47E0A6]" />
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-[#0A0E1A]/80 border border-[#262F4C] space-y-1">
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#0A0E1A]/80 border border-[#262F4C] space-y-1">
             <span className="text-[10px] uppercase font-mono font-bold text-[#8D96B3] block">
               Keyword Density
             </span>
             <div className="flex items-center justify-between">
-              <span className="text-lg font-black font-display text-white">
+              <span className="text-base sm:text-lg font-black font-display text-white">
                 {breakdown.keywordMatchScore || 85}%
               </span>
               <Award className="w-4 h-4 text-[#FFB020]" />
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-[#0A0E1A]/80 border border-[#262F4C] space-y-1">
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#0A0E1A]/80 border border-[#262F4C] space-y-1">
             <span className="text-[10px] uppercase font-mono font-bold text-[#8D96B3] block">
-              XYZ Impact Metrics
+              XYZ Metrics
             </span>
             <div className="flex items-center justify-between">
-              <span className="text-lg font-black font-display text-white">
+              <span className="text-base sm:text-lg font-black font-display text-white">
                 {breakdown.impactQuantificationScore || 78}%
               </span>
               <TrendingUp className="w-4 h-4 text-cyan-400" />
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-[#0A0E1A]/80 border border-[#262F4C] space-y-1">
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-[#0A0E1A]/80 border border-[#262F4C] space-y-1">
             <span className="text-[10px] uppercase font-mono font-bold text-[#8D96B3] block">
-              Seniority Alignment
+              Seniority
             </span>
             <div className="flex items-center justify-between">
-              <span className="text-lg font-black font-display text-white">
+              <span className="text-base sm:text-lg font-black font-display text-white">
                 {breakdown.experienceRelevanceScore || 88}%
               </span>
               <Briefcase className="w-4 h-4 text-purple-400" />
@@ -239,25 +239,25 @@ export default function ResumeMentorView({ report }) {
       </div>
 
       {/* 2. MENTOR GUIDANCE & CANDIDATE STRENGTHS / GAPS */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
         {/* Left: Mentor Executive Strategic Summary */}
-        <div className="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-7 border border-[#262F4C] space-y-4 relative overflow-hidden bg-gradient-to-b from-[#121A2E]/80 to-[#0A0E1A]/90">
+        <div className="lg:col-span-7 glass-card rounded-3xl p-5 sm:p-7 border border-[#262F4C] space-y-4 relative overflow-hidden bg-gradient-to-b from-[#121A2E]/80 to-[#0A0E1A]/90">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
+            <div className="p-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex-shrink-0">
               <Compass className="w-5 h-5 animate-pulse" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white font-display">AI Career Mentor Evaluation</h3>
-              <p className="text-xs text-[#8D96B3]">Strategic insights from a Senior Engineering Mentor</p>
+              <h3 className="text-sm sm:text-base font-bold text-white font-display">AI Career Mentor Evaluation</h3>
+              <p className="text-[11px] sm:text-xs text-[#8D96B3]">Strategic insights from a Senior Engineering Mentor</p>
             </div>
           </div>
 
-          <p className="text-sm text-[#EDEFF7] leading-relaxed bg-[#0A0E1A]/70 p-4 rounded-2xl border border-[#262F4C]">
+          <p className="text-xs sm:text-sm text-[#EDEFF7] leading-relaxed bg-[#0A0E1A]/70 p-3.5 sm:p-4 rounded-2xl border border-[#262F4C]">
             "{mentor.mentorSummary || insights.summary}"
           </p>
 
           {/* Action Items List */}
-          <div className="space-y-2 pt-2">
+          <div className="space-y-2 pt-1">
             <span className="text-xs font-bold font-mono text-[#FFB020] uppercase tracking-wider flex items-center gap-1.5">
               <Zap className="w-3.5 h-3.5 text-[#FFB020]" />
               High-Priority Resume Upgrades
@@ -276,9 +276,9 @@ export default function ResumeMentorView({ report }) {
         {/* Right: Strengths vs Gaps */}
         <div className="lg:col-span-5 space-y-4">
           {/* Strengths Card */}
-          <div className="glass-card rounded-3xl p-5 border border-[#262F4C] space-y-3 bg-[#121A2E]/60">
+          <div className="glass-card rounded-3xl p-4 sm:p-5 border border-[#262F4C] space-y-2.5 sm:space-y-3 bg-[#121A2E]/60">
             <div className="flex items-center gap-2 text-[#47E0A6]">
-              <ShieldCheck className="w-4 h-4" />
+              <ShieldCheck className="w-4 h-4 flex-shrink-0" />
               <h4 className="text-xs font-bold uppercase tracking-wider font-mono">Top Competitive Strengths</h4>
             </div>
             <ul className="space-y-2 text-xs text-slate-200">
@@ -292,9 +292,9 @@ export default function ResumeMentorView({ report }) {
           </div>
 
           {/* Gaps Card */}
-          <div className="glass-card rounded-3xl p-5 border border-[#262F4C] space-y-3 bg-[#121A2E]/60">
+          <div className="glass-card rounded-3xl p-4 sm:p-5 border border-[#262F4C] space-y-2.5 sm:space-y-3 bg-[#121A2E]/60">
             <div className="flex items-center gap-2 text-[#FFB020]">
-              <AlertTriangle className="w-4 h-4" />
+              <AlertTriangle className="w-4 h-4 flex-shrink-0" />
               <h4 className="text-xs font-bold uppercase tracking-wider font-mono">High-Leverage Gaps to Fix</h4>
             </div>
             <ul className="space-y-2 text-xs text-slate-200">
@@ -310,20 +310,20 @@ export default function ResumeMentorView({ report }) {
       </div>
 
       {/* 3. TARGET HIGH-MATCH JOB ROLES */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between border-b border-[#262F4C] pb-3">
+      <div className="space-y-3 sm:space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-[#262F4C] pb-3">
           <div className="flex items-center gap-2">
-            <Target className="w-5 h-5 text-cyan-400" />
-            <h3 className="text-base font-bold text-white font-display">Target High-Match Job Opportunities</h3>
+            <Target className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+            <h3 className="text-sm sm:text-base font-bold text-white font-display">Target High-Match Job Opportunities</h3>
           </div>
-          <span className="text-xs text-[#8D96B3] font-mono">Market Compensation Benchmark</span>
+          <span className="text-[11px] text-[#8D96B3] font-mono">Market Compensation Benchmark</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {(mentor.targetJobRoles || []).map((job, idx) => (
             <div
               key={idx}
-              className="glass-card rounded-2xl p-5 border border-[#262F4C] space-y-3 hover:border-cyan-500/40 transition-all flex flex-col justify-between"
+              className="glass-card rounded-2xl p-4 sm:p-5 border border-[#262F4C] space-y-3 hover:border-cyan-500/40 transition-all flex flex-col justify-between"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -352,29 +352,29 @@ export default function ResumeMentorView({ report }) {
 
       {/* 4. 30-60-90 DAY CAREER ACCELERATION ROADMAP */}
       {mentor.growthRoadmap && (
-        <div className="glass-panel rounded-3xl p-6 sm:p-7 border border-[#262F4C] space-y-6 bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#262F4C] pb-4">
+        <div className="glass-panel rounded-3xl p-4 sm:p-7 border border-[#262F4C] space-y-5 sm:space-y-6 bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-b border-[#262F4C] pb-4">
             <div className="flex items-center gap-2.5">
-              <Calendar className="w-5 h-5 text-amber-400" />
+              <Calendar className="w-5 h-5 text-amber-400 flex-shrink-0" />
               <div>
-                <h3 className="text-base font-bold text-white font-display">
+                <h3 className="text-sm sm:text-base font-bold text-white font-display">
                   30-60-90 Day Career Acceleration Roadmap
                 </h3>
-                <p className="text-xs text-[#8D96B3]">Step-by-step strategy to land top-tier offers</p>
+                <p className="text-[11px] sm:text-xs text-[#8D96B3]">Step-by-step strategy to land top-tier offers</p>
               </div>
             </div>
 
             {/* Roadmap Tab Buttons */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none touch-pan-x pb-1 sm:pb-0">
               {[
-                { id: 'next30Days', label: 'Month 1 (30 Days)' },
-                { id: 'next60Days', label: 'Month 2 (60 Days)' },
-                { id: 'next90Days', label: 'Month 3 (90 Days)' },
+                { id: 'next30Days', label: '30 Days' },
+                { id: 'next60Days', label: '60 Days' },
+                { id: 'next90Days', label: '90 Days' },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveRoadmapTab(tab.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap flex-shrink-0 ${
                     activeRoadmapTab === tab.id
                       ? 'btn-ignition'
                       : 'bg-[#0A0E1A] text-[#8D96B3] hover:text-white border border-[#262F4C]'

@@ -91,19 +91,19 @@ export default function ResumeStudioPage() {
   };
 
   return (
-    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-12 relative z-10">
+    <div className="min-h-screen py-6 sm:py-10 px-3 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 sm:space-y-12 relative z-10">
       {/* Header Banner */}
-      <div className="text-center space-y-4 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full pill-accent text-xs font-mono font-bold tracking-wider uppercase backdrop-blur-xl">
+      <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full pill-accent text-xs font-mono font-bold tracking-wider uppercase backdrop-blur-xl">
           <Compass className="w-3.5 h-3.5 animate-pulse" />
           <span>AI ATS & CAREER MENTOR STUDIO</span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight font-display">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-display">
           Accelerate Your Career with <span className="text-gradient-ai">AI Mentorship</span>
         </h1>
 
-        <p className="text-sm sm:text-base text-[#8D96B3] max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xs sm:text-base text-[#8D96B3] max-w-2xl mx-auto leading-relaxed">
           Upload your resume to get an instant <strong>ATS Optimization Audit</strong>, 
           personalized career path recommendations, 30-60-90 day growth roadmap, 
           high-impact project suggestions, and Google XYZ bullet rewrites.
@@ -111,45 +111,45 @@ export default function ResumeStudioPage() {
       </div>
 
       {/* 4-Pillar Feature Highlights */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-        <div className="p-4 rounded-2xl glass-card border border-[#262F4C] space-y-1 text-center">
-          <span className="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mx-auto mb-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-[#262F4C] space-y-1 text-center">
+          <span className="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mx-auto mb-1.5 sm:mb-2">
             <Award className="w-4 h-4" />
           </span>
           <h4 className="text-xs font-bold text-white font-display">ATS Score Breakdown</h4>
-          <p className="text-[11px] text-[#8D96B3]">Formatting, Keywords & Metrics</p>
+          <p className="text-[10px] sm:text-[11px] text-[#8D96B3]">Keywords & Metrics</p>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-[#262F4C] space-y-1 text-center">
-          <span className="w-8 h-8 rounded-xl bg-[#47E0A6]/15 text-[#47E0A6] flex items-center justify-center mx-auto mb-2">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-[#262F4C] space-y-1 text-center">
+          <span className="w-8 h-8 rounded-xl bg-[#47E0A6]/15 text-[#47E0A6] flex items-center justify-center mx-auto mb-1.5 sm:mb-2">
             <Target className="w-4 h-4" />
           </span>
           <h4 className="text-xs font-bold text-white font-display">Target Job Roles</h4>
-          <p className="text-[11px] text-[#8D96B3]">Match % & Salary Benchmarks</p>
+          <p className="text-[10px] sm:text-[11px] text-[#8D96B3]">Match % & Salaries</p>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-[#262F4C] space-y-1 text-center">
-          <span className="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center mx-auto mb-2">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-[#262F4C] space-y-1 text-center">
+          <span className="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center mx-auto mb-1.5 sm:mb-2">
             <TrendingUp className="w-4 h-4" />
           </span>
           <h4 className="text-xs font-bold text-white font-display">30-60-90 Roadmap</h4>
-          <p className="text-[11px] text-[#8D96B3]">Actionable Career Milestones</p>
+          <p className="text-[10px] sm:text-[11px] text-[#8D96B3]">Career Milestones</p>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-[#262F4C] space-y-1 text-center">
-          <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center mx-auto mb-2">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-[#262F4C] space-y-1 text-center">
+          <span className="w-8 h-8 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center mx-auto mb-1.5 sm:mb-2">
             <Sparkles className="w-4 h-4" />
           </span>
           <h4 className="text-xs font-bold text-white font-display">XYZ Formula Fixes</h4>
-          <p className="text-[11px] text-[#8D96B3]">High-Impact Bullet Rewrites</p>
+          <p className="text-[10px] sm:text-[11px] text-[#8D96B3]">Bullet Rewrites</p>
         </div>
       </div>
 
       {/* Drag and Drop Zone */}
-      <div className="glass-panel rounded-3xl p-6 sm:p-10 border border-[#262F4C] space-y-6 bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95 shadow-2xl">
+      <div className="glass-panel rounded-3xl p-5 sm:p-10 border border-[#262F4C] space-y-5 sm:space-y-6 bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95 shadow-2xl">
         <div
           {...getRootProps()}
-          className={`relative border-2 border-dashed rounded-3xl p-8 sm:p-14 text-center cursor-pointer transition-all duration-300 overflow-hidden ${
+          className={`relative border-2 border-dashed rounded-3xl p-6 sm:p-12 text-center cursor-pointer transition-all duration-300 overflow-hidden ${
             isDragActive
               ? 'border-amber-400 bg-amber-500/10 scale-[0.99] shadow-2xl shadow-amber-500/25'
               : file
@@ -165,31 +165,31 @@ export default function ResumeStudioPage() {
 
           <div className="flex flex-col items-center justify-center relative z-10">
             <div
-              className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform duration-300 ${
+              className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-transform duration-300 ${
                 file
                   ? 'bg-[#47E0A6]/20 text-[#47E0A6] scale-110 shadow-lg shadow-[#47E0A6]/20'
                   : 'bg-amber-500/15 border border-amber-500/30 text-amber-400 shadow-lg shadow-amber-500/15'
               }`}
             >
-              {file ? <FileText className="w-8 h-8" /> : <UploadCloud className="w-8 h-8" />}
+              {file ? <FileText className="w-7 h-7 sm:w-8 sm:h-8" /> : <UploadCloud className="w-7 h-7 sm:w-8 sm:h-8" />}
             </div>
 
             {file ? (
               <div className="space-y-1">
-                <h4 className="text-base font-bold text-white">{file.name}</h4>
+                <h4 className="text-sm sm:text-base font-bold text-white truncate max-w-[280px] sm:max-w-md mx-auto">{file.name}</h4>
                 <p className="text-xs text-[#8D96B3]">
                   {(file.size / (1024 * 1024)).toFixed(2)} MB • Ready for AI ATS & Career Mentorship Audit
                 </p>
-                <span className="inline-block mt-3 text-xs text-amber-400 underline hover:text-amber-300">
-                  Click or drag another resume to replace
+                <span className="inline-block mt-2 sm:mt-3 text-xs text-amber-400 underline hover:text-amber-300">
+                  Tap or drag another resume to replace
                 </span>
               </div>
             ) : (
               <div className="space-y-1">
-                <h4 className="text-base sm:text-lg font-bold text-white font-display">
-                  Drag & drop your Resume PDF here, or <span className="text-amber-400 underline">browse</span>
+                <h4 className="text-sm sm:text-lg font-bold text-white font-display">
+                  Tap to upload or drag & drop Resume
                 </h4>
-                <p className="text-xs text-[#8D96B3] max-w-md mx-auto">
+                <p className="text-[11px] sm:text-xs text-[#8D96B3] max-w-md mx-auto">
                   Supports PDF, Word DOCX, and Text resumes up to 10MB
                 </p>
               </div>
@@ -211,7 +211,7 @@ export default function ResumeStudioPage() {
             <div className="flex justify-between text-xs text-slate-300 font-semibold font-mono">
               <span className="flex items-center gap-2">
                 <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-400" />
-                Auditing ATS Compatibility & Generating Career Mentorship...
+                Auditing ATS Compatibility...
               </span>
               <span className="text-amber-400">{uploadProgress}%</span>
             </div>
@@ -229,20 +229,20 @@ export default function ResumeStudioPage() {
           type="button"
           onClick={handleUploadSubmit}
           disabled={!file || uploading}
-          className={`w-full py-4 px-6 rounded-2xl font-black text-sm flex items-center justify-center gap-2.5 transition-all duration-200 font-display ${
+          className={`w-full py-3.5 sm:py-4 px-6 rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all duration-200 font-display ${
             !file || uploading
               ? 'bg-[#121A2E] text-slate-500 cursor-not-allowed border border-[#262F4C]'
-              : 'btn-ignition cursor-pointer'
+              : 'btn-ignition cursor-pointer active:scale-[0.99]'
           }`}
         >
           {uploading ? (
             <>
-              <Loader2 className="w-5 h-5 animate-spin text-[#0A0E1A]" />
+              <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin text-[#0A0E1A]" />
               <span>Analyzing with AI Career Mentor & ATS Engine...</span>
             </>
           ) : (
             <>
-              <Compass className="w-5 h-5 text-[#0A0E1A]" />
+              <Compass className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A0E1A]" />
               <span>Analyze Resume with AI Mentor & ATS Auditor</span>
               <ArrowRight className="w-4 h-4 ml-1 text-[#0A0E1A]" />
             </>

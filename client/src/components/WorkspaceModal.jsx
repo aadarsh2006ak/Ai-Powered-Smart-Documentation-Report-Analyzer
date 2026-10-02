@@ -94,32 +94,32 @@ export default function WorkspaceModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="w-full max-w-2xl glass-modal rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[620px] border border-white/10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="w-full max-w-2xl glass-modal rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[88vh] sm:max-h-[620px] border border-white/10">
         {/* Header */}
-        <div className="p-5 border-b border-white/10 flex items-center justify-between bg-slate-950/40">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shadow-md shadow-cyan-500/25 text-white">
-              <Users className="w-5 h-5" />
+        <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-slate-950/40">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shadow-md shadow-cyan-500/25 text-white flex-shrink-0">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div>
-              <h3 className="text-base font-bold text-white">Team & Workspaces</h3>
-              <p className="text-xs text-slate-400">Share analyzed documents with colleagues & clients</p>
+            <div className="min-w-0">
+              <h3 className="text-sm sm:text-base font-bold text-white truncate">Team & Workspaces</h3>
+              <p className="text-[11px] sm:text-xs text-slate-400 truncate">Share analyzed documents with colleagues & clients</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors flex-shrink-0 ml-1"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
 
-        {/* Action Tabs */}
-        <div className="flex border-b border-white/10 px-5 pt-3 gap-2 bg-slate-950/20">
+        {/* Action Tabs - Horizontal Scrollable on Mobile */}
+        <div className="flex border-b border-white/10 px-3 sm:px-5 pt-3 gap-1 sm:gap-2 bg-slate-950/20 overflow-x-auto scrollbar-none flex-nowrap">
           <button
             onClick={() => setTab('list')}
-            className={`pb-2.5 px-3 text-xs font-bold transition-all border-b-2 ${
+            className={`pb-2.5 px-3 text-xs font-bold transition-all border-b-2 whitespace-nowrap flex-shrink-0 ${
               tab === 'list'
                 ? 'text-cyan-400 border-cyan-400'
                 : 'text-slate-400 border-transparent hover:text-slate-200'
@@ -129,7 +129,7 @@ export default function WorkspaceModal({ isOpen, onClose }) {
           </button>
           <button
             onClick={() => setTab('create')}
-            className={`pb-2.5 px-3 text-xs font-bold transition-all border-b-2 flex items-center gap-1.5 ${
+            className={`pb-2.5 px-3 text-xs font-bold transition-all border-b-2 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
               tab === 'create'
                 ? 'text-cyan-400 border-cyan-400'
                 : 'text-slate-400 border-transparent hover:text-slate-200'
@@ -140,7 +140,7 @@ export default function WorkspaceModal({ isOpen, onClose }) {
           </button>
           <button
             onClick={() => setTab('join')}
-            className={`pb-2.5 px-3 text-xs font-bold transition-all border-b-2 flex items-center gap-1.5 ${
+            className={`pb-2.5 px-3 text-xs font-bold transition-all border-b-2 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
               tab === 'join'
                 ? 'text-cyan-400 border-cyan-400'
                 : 'text-slate-400 border-transparent hover:text-slate-200'

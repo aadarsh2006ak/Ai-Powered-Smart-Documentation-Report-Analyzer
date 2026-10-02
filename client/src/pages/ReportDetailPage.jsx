@@ -140,18 +140,19 @@ export default function ReportDetailPage() {
   const isStillProcessing = report.status === 'queued' || report.status === 'processing';
 
   return (
-    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen py-6 sm:py-10 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6 sm:space-y-8">
       {/* Top Breadcrumb & Action Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <Link
           to="/dashboard"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors py-1"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Dashboard</span>
         </Link>
 
-        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+        {/* Responsive Action Toolbar */}
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={fetchReport}
             className="p-2.5 rounded-xl bg-slate-900/60 backdrop-blur-md border border-white/10 text-slate-300 hover:text-cyan-300 hover:border-cyan-500/30 transition-all shadow-sm"
@@ -164,18 +165,18 @@ export default function ReportDetailPage() {
             <>
               <button
                 onClick={() => setIsChatOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 shadow-md shadow-cyan-500/10 backdrop-blur-md transition-all duration-200 transform hover:scale-[1.02]"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 rounded-xl text-xs font-bold text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 shadow-md shadow-cyan-500/10 backdrop-blur-md transition-all duration-200 transform active:scale-95"
               >
-                <MessageSquare className="w-4 h-4 text-cyan-400" />
-                <span>Chat with Doc (RAG)</span>
+                <MessageSquare className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <span>Chat with Doc</span>
               </button>
 
               <Link
                 to={`/compare?docA=${report._id}`}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 shadow-md shadow-indigo-500/10 backdrop-blur-md transition-all duration-200 transform hover:scale-[1.02]"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 rounded-xl text-xs font-bold text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 shadow-md shadow-indigo-500/10 backdrop-blur-md transition-all duration-200 transform active:scale-95"
               >
-                <Scale className="w-4 h-4 text-indigo-400" />
-                <span>Compare Contract</span>
+                <Scale className="w-4 h-4 text-indigo-400 flex-shrink-0" />
+                <span className="hidden xs:inline">Compare</span> Contract
               </Link>
             </>
           )}
@@ -185,31 +186,31 @@ export default function ReportDetailPage() {
               href={report.originalFile.url}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-900/60 text-slate-200 hover:text-white hover:bg-slate-800 border border-white/10 backdrop-blur-md transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold bg-slate-900/60 text-slate-200 hover:text-white hover:bg-slate-800 border border-white/10 backdrop-blur-md transition-all"
             >
-              <ExternalLink className="w-3.5 h-3.5" />
-              <span>Original File</span>
+              <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
+              <span className="hidden sm:inline">Original</span> File
             </a>
           )}
 
           <button
             onClick={handleDownloadPdf}
             disabled={isStillProcessing || downloadingPdf}
-            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white shadow-lg transition-all duration-200 ${
+            className={`inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold text-white shadow-lg transition-all duration-200 ${
               isStillProcessing || downloadingPdf
                 ? 'bg-slate-900 text-slate-500 cursor-not-allowed border border-white/5'
-                : 'bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 shadow-cyan-500/25 transform hover:scale-[1.02]'
+                : 'bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 shadow-cyan-500/25 active:scale-95'
             }`}
           >
             {downloadingPdf ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-white" />
-                <span>Exporting PDF...</span>
+                <Loader2 className="w-4 h-4 animate-spin text-white flex-shrink-0" />
+                <span>Exporting...</span>
               </>
             ) : (
               <>
-                <Download className="w-4 h-4" />
-                <span>Export PDF Report</span>
+                <Download className="w-4 h-4 flex-shrink-0" />
+                <span>Export PDF</span>
               </>
             )}
           </button>
@@ -217,22 +218,22 @@ export default function ReportDetailPage() {
       </div>
 
       {/* Document Meta Banner */}
-      <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 space-y-5 shadow-xl relative overflow-hidden">
+      <div className="glass-panel rounded-3xl p-4 sm:p-7 border border-white/10 space-y-4 sm:space-y-5 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
-          <div className="flex items-start gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center flex-shrink-0 shadow-lg shadow-cyan-500/10">
-              <FileText className="w-7 h-7" />
+          <div className="flex items-start gap-3 sm:gap-4 min-w-0">
+            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center flex-shrink-0 shadow-lg shadow-cyan-500/10 mt-0.5">
+              <FileText className="w-5 h-5 sm:w-7 sm:h-7" />
             </div>
-            <div>
-              <div className="flex items-center gap-3 flex-wrap mb-1.5">
-                <h1 className="text-xl sm:text-2xl font-black text-white">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap mb-1">
+                <h1 className="text-lg sm:text-2xl font-black text-white truncate max-w-full">
                   {report.originalFile?.fileName}
                 </h1>
                 <StatusBadge status={report.status} />
               </div>
-              <div className="flex items-center gap-3 text-xs text-slate-400 flex-wrap">
+              <div className="flex items-center gap-2 sm:gap-3 text-xs text-slate-400 flex-wrap">
                 <span className="capitalize font-semibold text-cyan-300">
                   {report.documentCategory} Category
                 </span>
@@ -241,13 +242,13 @@ export default function ReportDetailPage() {
                 <span>•</span>
                 <span className="flex items-center gap-1">
                   <Clock className="w-3.5 h-3.5 text-slate-400" />
-                  Analyzed on {new Date(report.createdAt).toLocaleString()}
+                  <span className="truncate">{new Date(report.createdAt).toLocaleDateString()}</span>
                 </span>
                 {report.isCachedResult && (
                   <>
                     <span>•</span>
-                    <span className="text-amber-300 font-bold bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 shadow-sm">
-                      ⚡ Instant Cache Hit
+                    <span className="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20 text-[10px]">
+                      ⚡ Cache Hit
                     </span>
                   </>
                 )}
@@ -256,33 +257,33 @@ export default function ReportDetailPage() {
           </div>
         </div>
 
-        {/* Live AI Optimization Telemetry Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/10 relative z-10 text-xs font-mono">
-          <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5 space-y-0.5">
+        {/* Live AI Optimization Telemetry Bar (Responsive 2x2 or 4x1 grid) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-white/10 relative z-10 text-xs font-mono">
+          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-950/60 border border-white/5 space-y-0.5">
             <span className="text-[10px] uppercase font-bold text-slate-400 block">Inference Speed</span>
-            <span className="text-sm font-black text-amber-400 flex items-center gap-1">
+            <span className="text-xs sm:text-sm font-black text-amber-400 flex items-center gap-1">
               <Zap className="w-3.5 h-3.5" />
               {report.telemetry?.inferenceLatencyMs || report.processingTimeMs || 650}ms
             </span>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5 space-y-0.5">
+          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-950/60 border border-white/5 space-y-0.5">
             <span className="text-[10px] uppercase font-bold text-slate-400 block">Neural Model</span>
-            <span className="text-sm font-bold text-cyan-300 truncate block">
-              {report.telemetry?.modelUsed || 'qwen3.8-27b'}
+            <span className="text-xs sm:text-sm font-bold text-cyan-300 truncate block">
+              {report.telemetry?.modelUsed || 'Gemini 2.0 / LLaMA'}
             </span>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5 space-y-0.5">
+          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-950/60 border border-white/5 space-y-0.5">
             <span className="text-[10px] uppercase font-bold text-slate-400 block">Tokens Processed</span>
-            <span className="text-sm font-bold text-[#47E0A6] block">
+            <span className="text-xs sm:text-sm font-bold text-[#47E0A6] block">
               {report.telemetry?.totalTokens ? `${report.telemetry.totalTokens} Tok` : 'Optimized'}
             </span>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5 space-y-0.5">
+          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-950/60 border border-white/5 space-y-0.5">
             <span className="text-[10px] uppercase font-bold text-slate-400 block">Payload Reduction</span>
-            <span className="text-sm font-bold text-purple-300 block">
+            <span className="text-xs sm:text-sm font-bold text-purple-300 block">
               {report.telemetry?.tokenSavingsPercent ? `${report.telemetry.tokenSavingsPercent}% Saved` : '65% Filtered'}
             </span>
           </div>
@@ -291,20 +292,20 @@ export default function ReportDetailPage() {
 
       {/* Processing State Banner */}
       {isStillProcessing && (
-        <div className="p-8 sm:p-12 rounded-3xl glass-panel border border-amber-500/40 text-center space-y-6 shadow-2xl relative overflow-hidden bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95">
+        <div className="p-6 sm:p-12 rounded-3xl glass-panel border border-amber-500/40 text-center space-y-5 sm:space-y-6 shadow-2xl relative overflow-hidden bg-gradient-to-b from-[#121A2E]/90 to-[#0A0E1A]/95">
           {/* Top Glowing Laser Scanner Animation */}
           <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent blur-[1px] animate-scanner pointer-events-none" />
 
           {/* Central Animated AI Core */}
-          <div className="relative w-20 h-20 mx-auto">
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto">
             <div className="absolute inset-0 rounded-2xl bg-amber-500/20 blur-xl animate-pulse" />
-            <div className="w-20 h-20 rounded-2xl bg-amber-500/15 border-2 border-amber-500/40 text-amber-400 flex items-center justify-center relative z-10 shadow-lg shadow-amber-500/20">
-              <Cpu className="w-10 h-10 animate-pulse" />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-500/15 border-2 border-amber-500/40 text-amber-400 flex items-center justify-center relative z-10 shadow-lg shadow-amber-500/20">
+              <Cpu className="w-8 h-8 sm:w-10 sm:h-10 animate-pulse" />
             </div>
           </div>
 
           <div className="space-y-2 max-w-lg mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
               <span>
                 {report.documentCategory === 'resume'
@@ -312,7 +313,7 @@ export default function ReportDetailPage() {
                   : 'NEURAL DOCUMENT PIPELINE ACTIVE'}
               </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white font-display">
+            <h3 className="text-lg sm:text-2xl font-black text-white font-display">
               {report.documentCategory === 'resume'
                 ? 'Auditing Resume & Synthesizing Career Mentorship...'
                 : 'Neural Document Analysis in Progress...'}
@@ -325,7 +326,7 @@ export default function ReportDetailPage() {
           </div>
 
           {/* 3 Real-Time Parsing Pipeline Stages */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-2xl mx-auto pt-2 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto pt-2 text-left">
             <div className="p-3.5 rounded-2xl bg-[#0A0E1A]/90 border border-[#262F4C] space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase">Stage 01</span>
@@ -364,12 +365,12 @@ export default function ReportDetailPage() {
       {report.status === 'done' && (
         <div className="space-y-6">
           {/* Tab Navigation */}
-          <div className="flex items-center gap-2 border-b border-[#262F4C] pb-3 overflow-x-auto">
+          <div className="flex items-center gap-2 border-b border-[#262F4C] pb-3 overflow-x-auto scrollbar-none touch-pan-x">
             {/* 1. Category Persona Studio Tab */}
             {report.documentCategory !== 'general' && (
               <button
                 onClick={() => setActiveTab('personaStudio')}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold whitespace-nowrap flex-shrink-0 transition-all ${
                   activeTab === 'personaStudio'
                     ? 'btn-ignition shadow-lg shadow-amber-500/20'
                     : 'text-[#8D96B3] hover:text-white hover:bg-white/5 border border-transparent'
@@ -385,7 +386,7 @@ export default function ReportDetailPage() {
                   {report.documentCategory === 'financial' && 'Financial & Solvency Studio'}
                   {report.documentCategory === 'academic' && 'Research & Methodology Studio'}
                   {report.documentCategory === 'compliance' && 'Compliance & Audit Studio'}
-                  {report.documentCategory === 'resume' && 'AI Resume & Career Mentor Studio'}
+                  {report.documentCategory === 'resume' && 'AI Resume & Career Mentor'}
                 </span>
               </button>
             )}
@@ -393,20 +394,20 @@ export default function ReportDetailPage() {
             {/* 2. Executive Insights Tab */}
             <button
               onClick={() => setActiveTab('insights')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold whitespace-nowrap flex-shrink-0 transition-all ${
                 activeTab === 'insights'
                   ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md shadow-cyan-500/25'
                   : 'text-[#8D96B3] hover:text-white hover:bg-white/5 border border-transparent'
               }`}
             >
               <Sparkles className="w-4 h-4 text-cyan-300" />
-              <span>Executive Insights & Risk Assessment</span>
+              <span>Executive Insights & Risk</span>
             </button>
 
             {/* 3. Raw Text Tab */}
             <button
               onClick={() => setActiveTab('rawText')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold whitespace-nowrap flex-shrink-0 transition-all ${
                 activeTab === 'rawText'
                   ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md shadow-cyan-500/25'
                   : 'text-[#8D96B3] hover:text-white hover:bg-white/5 border border-transparent'

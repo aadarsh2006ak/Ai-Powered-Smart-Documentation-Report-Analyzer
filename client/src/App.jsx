@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
+import MobileBottomNav from './components/MobileBottomNav';
 import NetworkBackground from './components/NetworkBackground';
 import HomePage from './pages/HomePage';
 import UploadPage from './pages/UploadPage';
@@ -27,7 +28,7 @@ function AppContent() {
       {/* Content Layer */}
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-1">
+        <main className="flex-1 pb-20 md:pb-8">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/upload" element={<UploadPage />} />
@@ -40,8 +41,14 @@ function AppContent() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
-        <footer className="glass-panel border-t border-white/5 py-6 text-center text-xs text-slate-400 backdrop-blur-xl">
-          <p>© 2026 SmartDoc AI • Full-Stack MERN + Gemini AI + BullMQ + Groq Engine</p>
+
+        {/* Mobile Bottom Navigation Bar (Visible only on < md screens) */}
+        <MobileBottomNav />
+
+        <footer className="glass-panel border-t border-white/5 py-5 sm:py-6 text-center text-xs text-slate-400 backdrop-blur-xl px-4 mb-16 md:mb-0">
+          <p className="text-[11px] sm:text-xs">
+            © 2026 SmartDoc AI • Full-Stack MERN + Gemini AI + BullMQ + Groq Dual Engine
+          </p>
         </footer>
       </div>
     </div>

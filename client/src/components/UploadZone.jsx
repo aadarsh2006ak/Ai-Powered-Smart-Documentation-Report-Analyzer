@@ -174,7 +174,7 @@ export default function UploadZone({ onUploadSuccess }) {
         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
           1. Select Analysis Persona & Template
         </label>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
           {CATEGORIES.map((cat) => {
             const isSelected = category === cat.id;
             const IconComponent = cat.icon;
@@ -183,26 +183,26 @@ export default function UploadZone({ onUploadSuccess }) {
                 type="button"
                 key={cat.id}
                 onClick={() => setCategory(cat.id)}
-                className={`p-4 rounded-2xl text-left border transition-all duration-200 flex flex-col justify-between relative overflow-hidden group ${
+                className={`p-3 sm:p-4 rounded-2xl text-left border transition-all duration-200 flex flex-col justify-between relative overflow-hidden group active:scale-[0.98] ${
                   isSelected
-                    ? 'glass-panel border-cyan-500/60 shadow-lg shadow-cyan-500/15 scale-[1.02]'
+                    ? 'glass-panel border-cyan-500/60 shadow-lg shadow-cyan-500/15 scale-[1.01]'
                     : 'glass-card border-white/5 hover:border-white/15'
                 }`}
               >
                 {isSelected && (
                   <div className="absolute top-0 right-0 w-12 h-12 bg-cyan-500/15 rounded-bl-full blur-sm" />
                 )}
-                <div className="flex items-center justify-between mb-2">
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center border ${cat.bg}`}>
+                <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border ${cat.bg}`}>
                     <IconComponent className={`w-4 h-4 ${cat.color}`} />
                   </div>
                   {isSelected && <CheckCircle2 className="w-4 h-4 text-cyan-400" />}
                 </div>
                 <div>
-                  <h4 className={`text-sm font-bold ${isSelected ? 'text-white' : 'text-slate-200'} font-display`}>
+                  <h4 className={`text-xs sm:text-sm font-bold ${isSelected ? 'text-white' : 'text-slate-200'} font-display truncate`}>
                     {cat.label}
                   </h4>
-                  <p className="text-[11px] text-slate-400 line-clamp-1 mt-0.5">{cat.desc}</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-400 line-clamp-1 mt-0.5">{cat.desc}</p>
                 </div>
               </button>
             );
@@ -212,12 +212,12 @@ export default function UploadZone({ onUploadSuccess }) {
 
       {/* Drag & Drop Area */}
       <div className="space-y-3">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400">
-          2. Upload Document (PDF, Word DOCX, Image, Plain Text)
+        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
+          2. Upload Document (PDF, Word DOCX, Image, Text)
         </label>
         <div
           {...getRootProps()}
-          className={`relative border-2 border-dashed rounded-3xl p-8 sm:p-12 text-center cursor-pointer transition-all duration-300 overflow-hidden ${
+          className={`relative border-2 border-dashed rounded-3xl p-6 sm:p-12 text-center cursor-pointer transition-all duration-300 overflow-hidden ${
             isDragActive
               ? 'border-cyan-400 bg-cyan-500/10 scale-[0.99] shadow-2xl shadow-cyan-500/25'
               : file
@@ -234,31 +234,31 @@ export default function UploadZone({ onUploadSuccess }) {
 
           <div className="flex flex-col items-center justify-center relative z-10">
             <div
-              className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform duration-300 ${
+              className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transition-transform duration-300 ${
                 file
                   ? 'bg-emerald-500/20 text-emerald-400 scale-110 shadow-lg shadow-emerald-500/20'
                   : 'bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 shadow-lg shadow-cyan-500/15'
               }`}
             >
-              {file ? <FileText className="w-8 h-8" /> : <UploadCloud className="w-8 h-8" />}
+              {file ? <FileText className="w-7 h-7 sm:w-8 sm:h-8" /> : <UploadCloud className="w-7 h-7 sm:w-8 sm:h-8" />}
             </div>
 
             {file ? (
               <div className="space-y-1">
-                <h4 className="text-base font-bold text-white">{file.name}</h4>
+                <h4 className="text-sm sm:text-base font-bold text-white truncate max-w-[280px] sm:max-w-md mx-auto">{file.name}</h4>
                 <p className="text-xs text-slate-400">
                   {(file.size / (1024 * 1024)).toFixed(2)} MB • Ready for AI Extraction & Reasoning
                 </p>
-                <span className="inline-block mt-3 text-xs text-cyan-400 underline hover:text-cyan-300">
-                  Click or drag another file to replace
+                <span className="inline-block mt-2 sm:mt-3 text-xs text-cyan-400 underline hover:text-cyan-300">
+                  Tap or drag another file to replace
                 </span>
               </div>
             ) : (
               <div className="space-y-1">
-                <h4 className="text-base sm:text-lg font-bold text-white">
-                  Drag & drop your document here, or <span className="text-cyan-400 underline">browse</span>
+                <h4 className="text-sm sm:text-lg font-bold text-white">
+                  Tap to upload or drag & drop file
                 </h4>
-                <p className="text-xs text-slate-400 max-w-md mx-auto">
+                <p className="text-[11px] sm:text-xs text-slate-400 max-w-md mx-auto">
                   Supports PDF contracts, Word reports, scanned receipts (OCR), and resumes up to 10MB
                 </p>
               </div>
