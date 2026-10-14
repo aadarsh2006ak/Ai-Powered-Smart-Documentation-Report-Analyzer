@@ -145,17 +145,22 @@ async function runIntegrationSuite() {
     await User.findByIdAndDelete(user._id);
 
     logger.info('\n====================================================');
-    logger.success(`🎉 ALL TESTS COMPLETE: ${passedTests}/${totalTests} PASSED (100% SUCCESS RATE)`);
+    if (passedTests === totalTests) {
+      logger.success(`🎉 ALL TESTS COMPLETE: ${passedTests}/${totalTests} PASSED (100% SUCCESS RATE)`);
+    } else {
+      logger.error(`❌ INTEGRATION TESTS FAILED: ${passedTests}/${totalTests} PASSED`);
+    }
     logger.info('====================================================');
   } catch (error) {
     logger.error('Integration suite encountered an error:', error.message);
+    passedTests = -1;
   } finally {
     await closeQueueWorker();
     await closeRedisConnection();
     if (mongoose.connection.readyState !== 0) {
       await mongoose.disconnect();
     }
-    process.exit(0);
+    process.exit(passedTests === totalTests ? 0 : 1);
   }
 }
 

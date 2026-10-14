@@ -28,6 +28,9 @@ function cleanRawText(rawText) {
 
   let text = rawText;
 
+  // 0. Normalize carriage returns (\r\n and \r to \n)
+  text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
   // 1. Remove non-printable / control characters except newlines/tabs
   text = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
 

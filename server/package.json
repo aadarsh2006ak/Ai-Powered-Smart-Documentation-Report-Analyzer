@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node node_modules/nodemon/bin/nodemon.js src/index.js"
+    "dev": "node node_modules/nodemon/bin/nodemon.js src/index.js",
+    "test": "node src/tests/testAuthAndUpload.js && node src/tests/testExtraction.js && node src/tests/testAIAnalyzer.js && node src/tests/testPdfAndEmail.js && node src/tests/testIntegrationSuite.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.758.0",

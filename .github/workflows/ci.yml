@@ -9,6 +9,7 @@ on:
 jobs:
   test_and_build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     services:
       mongodb:
@@ -36,6 +37,7 @@ jobs:
       - name: Install & Test Server
         working-directory: ./server
         env:
+          NODE_ENV: test
           MONGO_URI: mongodb://127.0.0.1:27017/doc_analyzer
           REDIS_HOST: 127.0.0.1
           REDIS_PORT: 6379

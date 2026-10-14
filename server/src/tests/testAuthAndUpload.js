@@ -16,6 +16,8 @@ async function runTests() {
 
   const baseUrl = `http://localhost:${testPort}/api`;
 
+  let hasFailure = false;
+
   try {
     // 1. Test Health Endpoint
     logger.info('1. Testing GET /api/health ...');
@@ -25,6 +27,7 @@ async function runTests() {
       logger.success('GET /api/health passed:', healthData);
     } else {
       logger.error('GET /api/health unexpected output:', healthData);
+      hasFailure = true;
     }
 
     // 2. Test Registration Validation (Negative case)
@@ -39,6 +42,7 @@ async function runTests() {
       logger.success('Validation rejection passed as expected:', invalidRegData.message);
     } else {
       logger.warn('Expected 400 validation error, got:', invalidRegRes.status);
+      hasFailure = true;
     }
 
     // 3. Test File Upload validation without auth (Negative case)
@@ -51,16 +55,31 @@ async function runTests() {
       logger.success('Auth guard on /api/upload passed as expected (401 Unauthorized)');
     } else {
       logger.warn('Expected 401 Unauthorized, got:', unauthUploadRes.status);
+      hasFailure = true;
     }
 
-    logger.success('🎉 Week 2 Verification Smoke Tests Complete!');
+    if (!hasFailure) {
+      logger.success('🎉 Week 2 Verification Smoke Tests Complete!');
+    } else {
+      logger.error('❌ Week 2 Verification Smoke Tests encountered assertion failures.');
+    }
   } catch (err) {
     logger.error('Verification encountered an error:', err.message);
+    hasFailure = true;
   } finally {
-    server.close();
+    try {
+      const { closeQueueWorker } = require('../queues/documentQueue');
+      const { closeRedisConnection } = require('../config/redis');
+      await closeQueueWorker();
+      await closeRedisConnection();
+    } catch (e) {}
     if (mongoose.connection.readyState !== 0) {
       await mongoose.disconnect();
     }
+    await new Promise((resolve) => server.close(resolve));
+    setTimeout(() => {
+      process.exit(hasFailure ? 1 : 0);
+    }, 100);
   }
 }
 

@@ -4,6 +4,7 @@ const logger = require('../utils/logger');
 
 async function runPdfAndEmailTests() {
   logger.info('Starting Week 6 PDF Export & Email Notification Verification...');
+  let hasFailure = false;
 
   const mockReport = {
     _id: '507f1f77bcf86cd799439011',
@@ -36,34 +37,47 @@ async function runPdfAndEmailTests() {
     },
   };
 
-  // 1. Test PDF Export
-  logger.info('1. Generating Publication-Ready PDF Report...');
-  const pdfBuffer = await pdfExportService.generateReportPdf(mockReport);
+  try {
+    // 1. Test PDF Export
+    logger.info('1. Generating Publication-Ready PDF Report...');
+    const pdfBuffer = await pdfExportService.generateReportPdf(mockReport);
 
-  const isValidPdf = pdfBuffer.slice(0, 4).toString() === '%PDF';
-  logger.info(`PDF Header Check: ${pdfBuffer.slice(0, 8).toString().trim()}`);
+    const isValidPdf = pdfBuffer.slice(0, 4).toString() === '%PDF';
+    logger.info(`PDF Header Check: ${pdfBuffer.slice(0, 8).toString().trim()}`);
 
-  if (isValidPdf && pdfBuffer.length > 1000) {
-    logger.success(`PDF Export passed: ${(pdfBuffer.length / 1024).toFixed(1)} KB valid vector PDF created!`);
-  } else {
-    logger.error('PDF Export failed: Invalid PDF buffer generated');
+    if (isValidPdf && pdfBuffer.length > 1000) {
+      logger.success(`PDF Export passed: ${(pdfBuffer.length / 1024).toFixed(1)} KB valid vector PDF created!`);
+    } else {
+      logger.error('PDF Export failed: Invalid PDF buffer generated');
+      hasFailure = true;
+    }
+
+    // 2. Test Email Notification Template
+    logger.info('2. Testing Email Notification Dispatch...');
+    const emailResult = await emailService.sendReportReadyEmail(
+      'test_user@example.com',
+      'Alex Morgan',
+      mockReport
+    );
+
+    if (emailResult && emailResult.messageId) {
+      logger.success('Email Notification Service passed:', emailResult.messageId);
+    } else {
+      logger.error('Email Notification failed:', emailResult);
+      hasFailure = true;
+    }
+
+    if (!hasFailure) {
+      logger.success('🎉 Week 6 Report Viewer, Risk Visualization & PDF Export Verification Completed Successfully!');
+    } else {
+      logger.error('❌ Week 6 PDF & Email Verification had failures.');
+    }
+  } catch (err) {
+    logger.error('PDF & Email verification encountered an error:', err.message);
+    hasFailure = true;
+  } finally {
+    process.exit(hasFailure ? 1 : 0);
   }
-
-  // 2. Test Email Notification Template
-  logger.info('2. Testing Email Notification Dispatch...');
-  const emailResult = await emailService.sendReportReadyEmail(
-    'test_user@example.com',
-    'Alex Morgan',
-    mockReport
-  );
-
-  if (emailResult && emailResult.messageId) {
-    logger.success('Email Notification Service passed:', emailResult.messageId);
-  } else {
-    logger.error('Email Notification failed:', emailResult);
-  }
-
-  logger.success('🎉 Week 6 Report Viewer, Risk Visualization & PDF Export Verification Completed Successfully!');
 }
 
 runPdfAndEmailTests();

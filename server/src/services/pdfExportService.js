@@ -2,6 +2,20 @@ const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
 const logger = require('../utils/logger');
 
 /**
+ * Sanitize text to ensure it only contains characters encodable by WinAnsi / Standard Fonts
+ */
+const sanitizeWinAnsi = (text) => {
+  if (!text || typeof text !== 'string') return '';
+  return text
+    .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015]/g, '-') // hyphens and dashes
+    .replace(/[\u2018\u2019\u201A\u201B]/g, "'") // single quotes
+    .replace(/[\u201C\u201D\u201E\u201F]/g, '"') // double quotes
+    .replace(/[\u2022\u2023\u25E6\u2043\u2219]/g, '*') // bullets
+    .replace(/[\u2026]/g, '...') // ellipsis
+    .replace(/[^\x00-\x7F\xA0-\xFF]/g, ' '); // strip any other non-WinAnsi characters
+};
+
+/**
  * Server-Side PDF Report Generator using pdf-lib
  */
 const pdfExportService = {
@@ -78,7 +92,7 @@ const pdfExportService = {
         borderWidth: 1,
       });
 
-      page.drawText(`Document: ${report.originalFile?.fileName || 'Document'}`, {
+      page.drawText(`Document: ${sanitizeWinAnsi(report.originalFile?.fileName || 'Document')}`, {
         x: 55,
         y: y - 5,
         size: 11,
@@ -87,7 +101,7 @@ const pdfExportService = {
       });
 
       page.drawText(
-        `Category: ${(report.documentCategory || 'General').toUpperCase()}  |  Processed: ${new Date(
+        `Category: ${sanitizeWinAnsi((report.documentCategory || 'General').toUpperCase())}  |  Processed: ${new Date(
           report.createdAt || Date.now()
         ).toLocaleDateString()}  |  Duration: ${report.processingTimeMs || 0}ms`,
         {
@@ -101,7 +115,7 @@ const pdfExportService = {
 
       // Risk score badge in metadata box
       const riskScore = report.aiInsights?.riskScore || 0;
-      const riskLevel = report.aiInsights?.riskLevel || 'Low';
+      const riskLevel = sanitizeWinAnsi(report.aiInsights?.riskLevel || 'Low');
 
       page.drawRectangle({
         x: width - 180,
@@ -131,7 +145,7 @@ const pdfExportService = {
 
       // Helper for Section Titles
       const drawSectionHeader = (title) => {
-        page.drawText(title.toUpperCase(), {
+        page.drawText(sanitizeWinAnsi(title.toUpperCase()), {
           x: 40,
           y,
           size: 11,
@@ -149,7 +163,8 @@ const pdfExportService = {
 
       // Helper for wrapping text into lines
       const wrapText = (text, maxWidth, fontSize, font) => {
-        const words = text.split(' ');
+        const cleanText = sanitizeWinAnsi(text);
+        const words = cleanText.split(' ');
         const lines = [];
         let currentLine = '';
 
@@ -257,7 +272,7 @@ const pdfExportService = {
             borderWidth: 0.5,
           });
 
-          page.drawText(entity.label, {
+          page.drawText(sanitizeWinAnsi(entity.label), {
             x: 55,
             y: y - 10,
             size: 8.5,
@@ -265,7 +280,8 @@ const pdfExportService = {
             color: brandBlue,
           });
 
-          const valText = entity.value.length > 55 ? entity.value.slice(0, 52) + '...' : entity.value;
+          const safeVal = sanitizeWinAnsi(entity.value);
+          const valText = safeVal.length > 55 ? safeVal.slice(0, 52) + '...' : safeVal;
           page.drawText(valText, {
             x: 220,
             y: y - 10,
@@ -281,7 +297,7 @@ const pdfExportService = {
       const totalPages = pdfDoc.getPageCount();
       for (let i = 0; i < totalPages; i++) {
         const p = pdfDoc.getPage(i);
-        p.drawText(`SmartDoc AI Report — Generated on ${new Date().toISOString()}`, {
+        p.drawText(`SmartDoc AI Report - Generated on ${new Date().toISOString()}`, {
           x: 40,
           y: 30,
           size: 7.5,
